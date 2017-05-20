@@ -152,12 +152,6 @@ public:
 		blitAlphaBlend=2,
 		blitScale=4
 	};
-	
-	enum {
-		accelNever = -1,
-		accelAuto = 0,
-		accelAlways = 1,
-        };
 
 	gPixmap(gSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
