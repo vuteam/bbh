@@ -8,7 +8,6 @@ noinst_LIBRARIES = libenigma_base.a
 
 libenigma_base_a_SOURCES = \
 	buffer.cpp \
-	cfile.cpp \
 	connection.cpp \
 	console.cpp \
 	ebase.cpp \
@@ -36,7 +35,6 @@ baseincludedir = $(pkgincludedir)/lib/base
 baseinclude_HEADERS = \
 	buffer.h \
 	console.h \
-	cfile.h \
 	ebase.h \
 	eenv.h \
 	eerror.h \
