@@ -256,7 +256,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 //---------------------------------------------------------------------
 
-static unsigned char *png_load(const char *file, int *ox, int *oy, int *_bypp)
+static unsigned char *png_load(const char filepara, *file, int *ox, int *oy, int *_bypp)
 {
 	png_uint_32 width, height;
 	unsigned int i;
@@ -447,7 +447,7 @@ inline void m_rend_gif_decodecolormap(unsigned char *cmb, unsigned char *rgbb, C
 	}
 }
 
-static unsigned char *gif_load(const char *file, int *ox, int *oy)
+static unsigned char *gif_load(const char filepara, *file, int *ox, int *oy)
 {
 	unsigned char *pic_buffer = NULL;
 	int px, py, i, j, ibxs;
