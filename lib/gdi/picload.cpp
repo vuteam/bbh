@@ -258,8 +258,6 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 static unsigned char *png_load(const char *file, int *ox, int *oy, int *_bypp)
 {
-	static const png_color_16 my_background = {0, 0, 0, 0, 0};
-
 	png_uint_32 width, height;
 	unsigned int i;
 	int bit_depth, color_type, interlace_type;
@@ -463,7 +461,14 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 	int cmaps;
 	int extcode;
 	
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5)	
 	gft = DGifOpenFileName(file);
+#else
+	{
+		int err;
+		gft = DGifOpenFileName(filepara->file, &err);
+	}
+#endif	
 	if (gft == NULL) 
 		return NULL;
 	do
@@ -537,13 +542,27 @@ static unsigned char *gif_load(const char *file, int *ox, int *oy)
 	}
 	while (rt != TERMINATE_RECORD_TYPE);
 
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)	
 	DGifCloseFile(gft);
+#else
+	{
+		int err;
+		DGifCloseFile(gft, &err);
+	}
+#endif	
 	return(pic_buffer);
 ERROR_R:
 	eDebug("[Picload] <Error gif>");
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)	
 	if (lb) 	free(lb);
 	if (slb) 	free(slb);
 	DGifCloseFile(gft);
+	#else
+	{
+		int err;
+		DGifCloseFile(gft, &err);
+	}
+#endif
 	return NULL;
 }
 
