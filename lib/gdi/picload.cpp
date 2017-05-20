@@ -256,7 +256,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 //---------------------------------------------------------------------
 
-static unsigned char *png_load(const char filepara, *file, int *ox, int *oy, int *_bypp)
+static unsigned char *png_load(const char *file, int *ox, int *oy, int *_bypp)
 {
 	png_uint_32 width, height;
 	unsigned int i;
