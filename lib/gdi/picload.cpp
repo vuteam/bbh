@@ -447,7 +447,7 @@ inline void m_rend_gif_decodecolormap(unsigned char *cmb, unsigned char *rgbb, C
 	}
 }
 
-static unsigned char *gif_load(const char filepara, *file, int *ox, int *oy)
+static unsigned char *gif_load(const char ;int *filepara, *file, int *ox, int *oy)
 {
 	unsigned char *pic_buffer = NULL;
 	int px, py, i, j, ibxs;
@@ -621,7 +621,7 @@ void ePicLoad::decodePic()
 		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, &m_filepara->bypp);	break;
 		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
-		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_GIF:	gif_load(m_filepara); break;
 	}
 	
 	if(m_filepara->pic_buffer != NULL)
